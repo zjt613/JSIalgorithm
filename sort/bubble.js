@@ -18,8 +18,8 @@ function ArrayList() {
     //冒泡排序
     this.bubbleSort=function(){
         var length=array.length;
-        for(i=0;i<length;i++){
-            for (j=0;j<length-i-1;j++){     //这里减不减1 答案是一样的唉  不过这个好
+        for(var i=0;i<length;i++){
+            for (var j=0;j<length-i-1;j++){     //这里减不减1 答案是一样的唉  不过这个好
                 if(array[j]>array[j+1]){
                     swap(j,j+1);
                 }
@@ -32,7 +32,7 @@ function ArrayList() {
     //生成数组
 function createNorSortArray(size) {
     var array=new ArrayList();
-    for(i=size;i>0;i--){
+    for(var i=size;i>0;i--){
         array.insert(i);
     }
     return array;
