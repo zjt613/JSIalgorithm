@@ -151,7 +151,7 @@ for(list.front();list.currPos()<list.length();list.next()){
 
 **栈的运用：** 进制转换、判断字符串是否回文,递归运算
 
-## 五、队列（特殊的列表，FIFO，）
+## 五、队列（特殊的列表，FIFO，First in First Out）
 
 定义：先进来的先出去，食堂买饭排队（当然插队的不法分子没教养没素质的 不算）就是队列
 
@@ -166,3 +166,47 @@ for(list.front();list.currPos()<list.length();list.next()){
 | peek()        | 读取队头               |
 
 **队列的运用：** 基数排序、优先队列（不遵守FIFO的）
+
+## 六、链表
+定义：链表是一组节点组成的集合。每个节点都使用一个对象的引用指向它的后继，指向另一个节点的引用叫做链，。这个是书上说的，
+接地气点讲就是那种链子，一条一条的哇。下面来造条链子 Header=>A=>B=>C=>D=>null。就这个意思啦。
+
+链表的构造
+
+|类|说明|
+| :----: | :----:|
+|Node|表示节点|
+|LinkedList|提供一些方法|
+
+节点节点 一层一层 地拨开我的心
+```$xslt
+LinkedList {
+  head: 
+   Node {
+     element: 'head',
+     next: Node { element: 'Hangzhou', next: [Node] } },
+  find: [Function: find],
+  insert: [Function: insert],
+  display: [Function: display] }
+```
+
+**双向链表：** 接楼上的普通链表之后，什么是双向链表呢，楼上那位不是有个next吗，楼下
+这位就是比它多了个pre哇，让我联想到了那个冒泡排序，它不是只冒一边的泡吗，这个就是两边都冒喽，
+有点这个意思，我们还是直接上例子吧 两条啊， header=>A=>B=>c>null; C=>B=>A=>header=>null
+
+```$xslt
+DoubleLinkedList {
+  head: 
+   Node {
+     element: 'head',
+     prev: null,
+     next: Node { element: 'Hangzhou', prev: [Circular], next: [Node] } },
+  find: [Function: find],
+  insert: [Function: insert],
+  findLast: [Function: findLast],
+  remove: [Function: remove],
+  display: [Function: display],
+  dispReverse: [Function: dispReverse] }
+```
+
+**循环链表：** 在创建的时候头节点的next指向头节点，说白了就是个圈哇
