@@ -1,5 +1,7 @@
 # Algorithm in Javascript
 
+#### Javascript玄学，一切皆对象，处处是对象，到处是回调 233333
+
 >阿涛在努力，前端说白了就是Javascript，不要怂，就是刚，Javascript语言的数据结构和算法 从现在开始！
 
 ## 一、关于排序算法 （这个先拿来练练手，不是按书的顺序的）
@@ -210,3 +212,15 @@ DoubleLinkedList {
 ```
 
 **循环链表：** 在创建的时候头节点的next指向头节点，说白了就是个圈哇
+
+## 七、字典(Dictionary)
+定义：Dictionary类的基础是Array类，而不是Object类，一种以键值对存储的数据结构，让我想到了JSON，嘿嘿！
+
+```$xslt
+Dictionary {
+  dataStore: [ name: 'ataola', sex: '男', age: '21' ],
+  add: [Function: add],
+  find: [Function: find],
+  remove: [Function: remove],
+  showAll: [Function: showAll] }
+```
