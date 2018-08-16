@@ -224,3 +224,68 @@ Dictionary {
   remove: [Function: remove],
   showAll: [Function: showAll] }
 ```
+
+## 八、散列(散列函数和散列表)
+定义：传说中的散列表，基于数组（长度质数为好，除留余数法）设计，所有元素通过该元素对应的键存储，通过散列函数映射。插入删除和取用数据效率高，但查找 它不行的，例如查找最大最小值，稍微虚了点。
+
+**基本散列函数：** 把每位选手的ascii值相加与数组的长度进行取余运算(这种情况要是遇到散列值一样的，后面的就会覆盖前面的，对否)
+
+```
+function simpleHash(data) {
+    var total = 0;
+    for (var i = 0; i < data.length; i++) {
+        total += data.charCodeAt(i);
+    }
+    console.log("Hash value: " + data + "->" + total);
+    return total % this.table.length;
+}
+
+Hash value: A->65
+Hash value: C->67
+Hash value: B->66
+Hash value: b->98
+Hash value: a->97
+Hash value: c->99
+Hash value: ab->195
+Hash value: AB->131
+Hash value: ad->197
+Hash value: da->197
+```
+
+**霍纳算法：** 在楼上那位的基础上，每次求和乘以一个质数，当然啦，质数怎么选也是有技巧的，比较JavaScript是处理I/O密集的选手而不是计算
+```
+function betterHash(data) {
+    var N=37;
+    var total=0;
+    for(var i=0;i<data.length;i++){
+        total=total*N+data.charCodeAt(i);
+    }
+    console.log("Hash value: " + data + "->" + total);
+    return total%this.table.length;
+}
+
+Hash value: A->65
+Hash value: C->67
+Hash value: B->66
+Hash value: b->98
+Hash value: a->97
+Hash value: c->99
+Hash value: ab->3687
+Hash value: AB->2471
+Hash value: ad->3689
+Hash value: da->3797
+```
+
+**应用：** 学生的ID和成绩散列
+
+**解决碰撞：** 开链法和线性探测法
+
+开链法：也就是创建了一个二维数组
+```
+function buildChains(){
+    for(var i=0;i<this.table.length;i++){
+        this.table[i]=new Array();
+    }
+}
+```
+线性探测法：在hashtable类中添加一个数组属性，然后分别在get、put里面分开放
