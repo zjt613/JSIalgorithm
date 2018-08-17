@@ -294,3 +294,73 @@ function buildChains(){
 定义：一种包含不同元素的数据结构，元素称之为成员，和高中数学讲得一样，具有互斥性和无序性，关于一些集合的概念扔给数学吧，
 但 空集 子集 交集 并集 补集 要心里有个数
 
+## 十、二叉树(Binary tree)和二叉查找树（Binary search trees）
+定义：树么，就是有根茎叶花果实种子那货，讲得生物了一点，就那个意思。有根节点（第0层）、子节点、有叶子节层，层数即树的深度，访问树种所有节点称为树的遍历，
+每个节点有关的值称之为 键
+
+**二叉树：** 二叉树是一种特殊的树，子节点不查过两个，左节点较小，右节点较大，这是棵规律树啊，所以查找效率高
+
+**二叉查找树（BST）：** 这个其实相比前面的数据结构可以说是有点复杂了，具体的是体现在用编程语言的实现
+
+insert()函数如下：一定要好好理解，不理解的话一段时间后就会忘了哦
+
+```
+function insert(data) {
+    //插入元素节点化
+    var n=new Node(data,null,null);
+    //如果根节点是null的话，设根节点为当前插入节点
+    if(this.root==null){
+        this.root=n;
+    }
+    else{
+        //把根节点赋值给当前节点
+        var current=this.root;
+        //父节点
+        var parent;
+        while (true){
+            //把当前节点赋值给父节点
+            parent=current;
+            //如果插入的节点数据小于当前节点数据的话，设新的当前节点为原节点的左节点
+            if(data<current.data){
+                current=current.left;
+                //如果当前节点的左节点为null，那么新节点插入这个位置，退出循环
+                if(current==null){
+                    parent.left=n;
+                    break;
+                }
+            }else {
+                //否则，设当前节点为原节点的右节点
+                current=current.right;
+                //如果当前节点的右节点为null，呢么新节点插入这个位置，退出循环
+                if(current==null){
+                    parent.right=n;
+                    break;
+                }
+            }
+        }
+    }
+}
+
+```
+
+在有了插入后，我们肯定是想遍历它得到结果，遍历的话，我们这样思考，一个不正常树，比方说它是一个三角形的深度为2的东东（自行脑补），要么从左节点，要么右节点
+要么中间那个，所以咯，先序（不是前序，别问我为什么，规矩啊）、中序、后序哇。
+
+总结下遍历吧：
+
+先序：根=>左=>右
+
+中序：左=>根=>右（按节点键值升序递归访问）
+
+``` 
+function inOrder(node) {
+    if(!(node==null)){
+        inOrder(node.left);
+        console.log(node.show()+" ");
+        inOrder(node.right);
+    }
+}
+```
+
+后序：左=>右=>根
+
